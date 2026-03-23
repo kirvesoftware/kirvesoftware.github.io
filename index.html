@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kirve Software</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #fafafa;
+      color: #111;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      padding: 80px 60px;
+      max-width: 700px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 0 0 16px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      font-size: 1.15rem;
+      color: #555;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .music-block {
+      margin-top: 48px;
+      max-width: 360px;
+    }
+
+    .music-text {
+      font-size: 0.95rem;
+      color: #777;
+      margin-bottom: 14px;
+    }
+
+    .play-btn {
+      appearance: none;
+      border: none;
+      border-radius: 999px;
+      background: #111;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 12px 18px;
+      cursor: pointer;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+      margin-bottom: 14px;
+    }
+
+    .play-btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.92;
+    }
+
+    .play-btn:active {
+      transform: translateY(0);
+    }
+
+    .spotify-wrap {
+      position: relative;
+      z-index: 2;
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(120px);
+      transition:
+        max-height 0.55s ease,
+        opacity 0.4s ease,
+        transform 0.55s ease;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .spotify-wrap.show {
+      max-height: 140px;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .spotify-wrap iframe {
+      display: block;
+      width: 100%;
+      height: 80px;
+      border: 0;
+      border-radius: 12px;
+      opacity: 0.95;
+      filter: grayscale(10%) contrast(0.96);
+    }
+
+    .tape {
+      position: absolute;
+      left: -10%;
+      width: 120%;
+      height: 80px;
+      background: linear-gradient(90deg, #ffd84d, #ffcc00);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #333;
+      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      z-index: 1;
+    }
+
+    .tape span {
+      opacity: 0.8;
+      white-space: nowrap;
+    }
+
+    /* moved down a bit */
+    .tape.first {
+      top: calc(45% + 1em);
+      transform: rotate(-8deg);
+    }
+
+    .tape.second {
+      top: calc(55% + 1em);
+      transform: rotate(6deg);
+      opacity: 0.9;
+    }
+
+    @media (max-width: 700px) {
+      .content {
+        padding: 48px 24px;
+      }
+
+      h1 {
+        font-size: 2.25rem;
+      }
+
+      p {
+        font-size: 1.05rem;
+      }
+
+      .music-block {
+        max-width: 100%;
+      }
+
+      .tape {
+        height: 64px;
+        font-size: 0.75rem;
+      }
+
+      .tape.first {
+        top: calc(52% + 1em);
+      }
+
+      .tape.second {
+        top: calc(60% + 1em);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="content">
+    <h1>🚧 Kirve Software</h1>
+    <p>
+      Under construction but very much in motion.<br>
+      Stay tuned, something cool is on its way.
+    </p>
+
+    <div class="music-block">
+      <div class="music-text">
+        If you want to jam to what we’ve been into lately while you wait:
+      </div>
+
+      <button id="playBtn" class="play-btn" type="button">🎧 play</button>
+
+      <div id="spotifyWrap" class="spotify-wrap">
+        <iframe
+          data-testid="embed-iframe"
+          src="https://open.spotify.com/embed/track/6USsjJujnct00SapJxE9Is?utm_source=generator"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="tape first">
+    <span>
+      under construction — under construction — under construction — under construction — under construction — under construction — under construction
+    </span>
+  </div>
+
+  <div class="tape second">
+    <span>
+      work in progress — work in progress — work in progress — work in progress — work in progress — work in progress — work in progress
+    </span>
+  </div>
+
+  <script>
+    const playBtn = document.getElementById("playBtn");
+    const spotifyWrap = document.getElementById("spotifyWrap");
+
+    playBtn.addEventListener("click", () => {
+      spotifyWrap.classList.toggle("show");
+
+      if (spotifyWrap.classList.contains("show")) {
+        playBtn.textContent = "🎧 hide player";
+      } else {
+        playBtn.textContent = "🎧 play";
+      }
+    });
+  </script>
+
+</body>
+</html>
